@@ -1,0 +1,116 @@
+class Animal():
+  voice = ''
+  name = ''
+  weight = 0
+
+  def feed(self, name):
+    print('{name} накормлена')
+
+  def __gt__(self, name, value):
+    self.weight = value
+    self.name = name
+    return self.weight 
+
+class Bird(Animal):
+  def pick_eggs(self, name):
+    print(f'У {name} яйца собраны')
+
+class Milk_animal(Animal):
+  def milk(self, name):
+   print(f'{name} подоена')   
+
+class Goose(Bird):
+  # def data(self):
+    # self.name = 'Гусь'
+    # print(self.name)  
+  voice = 'Ga-ga-ga'  
+
+class Cow(Milk_animal):
+  voice = 'Muu'    
+
+class Sheep(Animal):
+  def shear(self, name):
+    print(f'{name} пострижен')
+  voice = 'Bee'    
+
+class Hen(Bird):
+  voice = 'Co-co-co'  
+
+class Goat(Milk_animal):
+  voice = 'Mee'
+
+class Duck(Bird):
+  voice = 'Krya'    
+
+goose_1 = Goose()
+goose_1.name = 'Серый'
+goose_1.weight = 3
+goose_2 = Goose()
+goose_2.name = 'Белый'
+goose_2.weight = 4
+cow = Cow()  
+cow.name = 'Манька'
+cow.weight = 200
+sheep_1 = Sheep()
+sheep_1.name = 'Барашек'
+sheep_1.weight = 100
+sheep_2 = Sheep()
+sheep_2.name = 'Кудрявый'
+sheep_2.weight = 150
+hen_1 = Hen()
+hen_1.name = 'Ко-ко'
+hen_1.weight = 2
+hen_2 = Hen()
+hen_2.name = 'Кукареку'
+hen_2.weight = 3
+goat_1 = Goat()
+goat_1.name = 'Рога'
+goat_1.weight = 130
+goat_2 = Goat()
+goat_2.name = 'Копыта'
+goat_2.weight = 120
+duck = Duck()
+duck.name = 'Кряква'
+duck.weight = 5
+
+
+goose_1.pick_eggs('Серого')
+hen_1.pick_eggs('Ко-ко')
+print(hen_1.voice)
+print('')
+duck.pick_eggs('Кряквы')
+cow.milk('Манька')
+print(cow.voice)
+print('')
+goat_2.milk('Копыта')
+sheep_1.shear('Барашек')
+print(sheep_1.voice)
+print('')
+
+weight_total = 0
+weight_max = 0
+name_max = '1'
+
+dict_animals = {
+  goose_1.name : goose_1.weight,
+  goose_2.name : goose_2.weight,
+  cow.name : cow.weight,
+  sheep_1.name : sheep_1.weight,
+  sheep_2.name : sheep_2.weight,
+  hen_1.name : hen_1.weight,
+  hen_2.name : hen_2.weight,
+  goat_1.name : goat_1.weight,
+  goat_2.name : goat_2.weight,
+  duck.name : duck.weight
+}
+
+
+for animal in dict_animals:
+  weight_total += dict_animals.get(animal)
+  
+  if weight_max < dict_animals.get(animal):
+    weight_max = dict_animals.get(animal)
+    name_max = animal
+
+print(f'Больше всех весит {name_max}: {weight_max} кг')  
+print(f'Общий вес всех животных составляет {weight_total} кг')
